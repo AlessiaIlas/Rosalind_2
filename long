@@ -1,0 +1,64 @@
+
+f = open(#INSERT FILE PATH,"r")
+emptlst = []
+content = f.read()
+ls = content.split('>')
+while("" in ls):
+    ls.remove("")
+str_lst = []
+for sub in ls:
+    str_lst.append(sub.replace("\n",""))
+ls_strings = []
+for x in str_lst:
+    totake = x[11:]
+    lentotake = len(totake)
+    ls_strings.append(totake)
+
+start_string = ls_strings[0]
+ls_strings = ls_strings[1:]
+
+
+halflen= int((len(start_string))/2)
+
+totlst = []
+for i in range(halflen):
+    q = i+(halflen+1)
+    templst= (start_string[i:q])
+    totlst.append(templst)
+
+final = ''
+newstr = ''
+for i in totlst:
+        for x in ls_strings:
+            
+                if i in x:
+                    
+                        print(x, i)
+                        
+                        toadd = x
+                        ls_strings.remove(x)
+                        locationinstart = (start_string.find(i))
+                        locationinx =(x.find(i))
+                        start_string = start_string[0:locationinstart]+i+x[locationinx+1+halflen:]
+
+for a in ls_strings:
+    antimony = 0 
+    while antimony == 0:
+        for b in range(halflen): 
+            q = b+(halflen+1)
+            
+            
+            if a[b:q] in start_string:
+                    abq = a[b:q]
+                    start_string_abq_start = int(start_string.find(abq)) #The start of the string to find in the main string 
+                    string_to_implement_abq_start = int(a.find(abq)) #The start of the string to find in the string to implement
+                    string_to_implement_abq_end = int(string_to_implement_abq_start + halflen)
+                    print("THE FSEQUECNED CHROMOSOME STRING IS  : ")
+                    startpart= start_string[0:start_string_abq_start] + abq
+                    lastpart = a[string_to_implement_abq_end:string_to_implement_abq_end+halflen+1]
+                    start_string= (str(startpart)+str(lastpart))
+                    print(start_string)
+
+
+        antimony += 1            
+        
