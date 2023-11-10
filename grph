@@ -1,0 +1,29 @@
+
+f = open(#INSERT FILE PATH,"r")
+emptlst = []
+content = f.read()
+ls = content.split('>')
+while("" in ls):
+    ls.remove("")
+str_lst = []
+for sub in ls:
+    str_lst.append(sub.replace("\n",""))
+ls_strings = []
+ls_names = []
+for x in str_lst:
+        totake = x[13:]
+        namestrings = x[0:13]
+        lentotake = len(totake)
+        ls_strings.append(totake)
+        ls_names.append(namestrings)
+for first_sequence in ls_strings:
+     for second_sequence in ls_strings:
+          first_position = int(ls_strings.index(first_sequence))
+          second_position = int(ls_strings.index(second_sequence))
+          firstname = ls_names[first_position]
+          secondname = ls_names[second_position]
+          if first_sequence != second_sequence:
+               suffix = first_sequence[-3:]
+               prefix = second_sequence[:3]
+               if prefix==suffix:
+                    print(firstname,secondname)
