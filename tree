@@ -1,0 +1,47 @@
+
+f = open(#INSERT FILE PATH,"r")
+emptlst = []
+content = f.read()
+ls = content.split("\n")
+while("" in ls):
+    ls.remove("")
+str_lst = []
+for sub in ls:
+    str_lst.append(sub.replace("\n",""))
+ls_strings = []
+ls_names = []
+for x in str_lst:
+
+        namestrings = x
+        ls_names.append(namestrings)
+tot_nodes = ls_names[0]
+ls_names = ls_names[1:]
+connected_nodes = 0
+adjacency_list = []
+aaa = []
+for i in ls_names:
+     adjacency_list.append(i.split(" "))
+for o in adjacency_list:
+     for t in o:
+          if t not in aaa:
+               connected_nodes += 1
+               aaa.append(t)
+unedged_nodes = int(tot_nodes)-int(connected_nodes)
+clusters = []
+strings_list = adjacency_list
+for i in strings_list:
+     iindex = strings_list.index(i)
+     for m in strings_list:
+          mindex = strings_list.index(m)
+          if i == m:
+               break
+          for h in i:
+               if h in m:
+                    n = i+m
+                    clusters.append(n)
+
+numclusters = int(len(clusters))              
+
+edgenum = (numclusters-1)+unedged_nodes
+print(edgenum)
+          
