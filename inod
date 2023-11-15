@@ -1,0 +1,9 @@
+
+init_num = int(input(" Enter the number of leaves: "))
+x = init_num
+count = 0
+while x != 1:
+    x= x/2
+    count += x
+count= count-1
+print("\n The number of internal nodes is: " + str(count))
