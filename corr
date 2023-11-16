@@ -1,0 +1,61 @@
+f = open(#INSERT FILE PATH,"r")
+emptlst = []
+content = f.read()
+ls = content.split('>')
+while("" in ls):
+    ls.remove("")
+str_lst = []
+for sub in ls:
+    str_lst.append(sub.replace("\n",""))
+ls_strings = []
+for x in str_lst:
+    totake = x[11:]
+    lentotake = len(totake)
+    ls_strings.append(totake)          
+    
+reverse_complements = []
+for i in ls_strings:
+    reverse_complements.append(i[::-1])
+list_reverse_complements = []
+for i in reverse_complements:
+    newstr = ''
+    for x in range(len(reverse_complements[0])):
+        y = i
+        
+        if y[x] == 'A':
+            newstr = newstr + 'T'
+        if y[x] == 'T':
+            newstr = newstr + 'A'
+        if y[x] == 'G':
+            newstr = newstr + 'C'
+        if y[x] == 'C':
+            newstr = newstr + 'G'
+        #print(newstr)
+    list_reverse_complements.append(newstr)
+correct_ones = []
+for i in ls_strings:
+    count = 0
+    for x in list_reverse_complements:
+        if i == x:
+            count += 1
+    for n in ls_strings:
+            
+        if i == n:
+            count+=1
+    if count > 1:
+        correct_ones.append(i)
+correct_ones = list(set(correct_ones))
+joint = list(set(ls_strings+list_reverse_complements))
+
+for n in correct_ones:
+    
+    for x in joint:
+        
+        second_count = 0
+        for i in range(len(reverse_complements[0])):
+            if n[i] == x[i]:
+                second_count +=1
+                if n == x:
+                    break
+                if (len(reverse_complements[0])-1) == second_count:
+                    print(str(x) + " ---> " + str(n))
